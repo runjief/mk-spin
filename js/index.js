@@ -1,6 +1,34 @@
 import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-esm.js';
 import {loadFonts, loadImages} from './utils.js';
 import {props} from './props.js';
+import * as easing from './easing.js';
+
+const easingFunctions = [
+  {
+    label: 'default (easeSinOut)',
+    function: null,
+  },
+  {
+    label: 'easeSinInOut',
+    function: easing.sinInOut,
+  },
+  {
+    label: 'easeCubicOut',
+    function: easing.cubicOut,
+  },
+  {
+    label: 'easeCubicInOut',
+    function: easing.cubicInOut,
+  },
+  {
+    label: 'easeElasticOut',
+    function: easing.elasticOut,
+  },
+  {
+    label: 'easeBounceOut',
+    function: easing.bounceOut,
+  },
+];
 
 window.onload = async () => {
 
@@ -52,8 +80,14 @@ window.onload = async () => {
 
     // Listen for click event on spin button:
     if (e.target === btnSpin) {
-      const {duration, winningItemRotaion} = calcSpinToValues();
-      wheel.spinTo(winningItemRotaion, duration);
+      // const {duration, winningItemRotaion} = calcSpinToValues();
+      const easing = easingFunctions[4];
+      const easingFunction = easing.function;
+      const duration = 2600;
+      const revolutions = 3;
+      wheel.spinToItem(0, duration, true, revolutions, 1, easingFunction);
+      // wheel.spinToItem(winningItemIndex, duration, true, 2, 1, easing)
+      // wheel.spinTo(winningItemRotaion, duration);
     }
 
   });
