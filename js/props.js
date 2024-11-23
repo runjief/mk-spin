@@ -5,24 +5,24 @@ export const props = [
   {
     name: 'Workout',
     radius: 0.84,
-    itemLabelRadius: 0.85,
-    itemLabelRadiusMax: 0.4,
+    itemLabelRadius: 0.92,
+    itemLabelRadiusMax: 0.33,
     itemLabelRotation: 180,
     itemLabelAlign: AlignText.left,
-    itemLabelColors: ['#c4bca5', '#fff'],
-    // itemLabelColors: ['#fff'],
+    // itemLabelColors: ['#c4bca5', '#fff'],
+    itemLabelColors: ['#fff'],
     itemLabelBaselineOffset: -0.07,
     itemLabelFont: 'Amatic SC',
     // itemLabelFont: 'Gloria Hallelujah',
 
-    itemLabelFontSizeMax: 55,  // maximum font size in pixels (relative to 500px container)
-    itemBackgroundColors: ['#ede4cc', '#c4bca5','#ffffed', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5'],
-    // itemBackgroundColors: ['#f4d6ce', '#55a4c2','#f2d778'],
+    itemLabelFontSizeMax: 50,  // maximum font size in pixels (relative to 500px container)
+    // itemBackgroundColors: ['#ede4cc', '#c4bca5','#ffffed', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5'],
+    itemBackgroundColors: ['#f4d6ce', '#55a4c2','#f2d778'],
    rotationSpeedMax: 500,
     rotationResistance: -100,
     lineWidth: 0,
     lineColor: '#fff',
-    image: './img/3d2.png',
+    image: './img/3d.png',
     imageScale: 0.5,
     overlayImage: './img/example-0-overlay.svg',
     items: [
