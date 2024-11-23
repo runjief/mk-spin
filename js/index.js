@@ -92,30 +92,43 @@ wheel.isInteractive = false;
 
     if (e.target === btnSpin) {
       try {
-        const response = await fetch('https://spin-wheel.fly.dev/spin/', {
+        const response = await fetch('https://spin-wheel.fly.dev/spin', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'accept': 'application/json'
           },
-          body: JSON.stringify({
-            user_id: '123'
-          })
+          body: ''
         });
         const data = await response.json();
         console.log('Spin response:', data);
         
         const easing = easingFunctions[4];
         const easingFunction = easing.function;
-        const duration = 2600;
+        const duration = 1500;
         const revolutions = 3;
-        const target = data.item;
-        
+        const target = data.selected_item.id;
+        wheel.pointerAngle = getRandomNumberInCombinedRange();
+        console.log(wheel.pointerAngle)
         wheel.spinToItem(target, duration, true, revolutions, 1, easingFunction);
       } catch (error) {
         console.error('Error fetching spin result:', error);
       }
     }
   });
+
+function getRandomNumberInCombinedRange() {
+  // Randomly decide which range to use: 50% chance for each range
+  const useFirstRange = Math.random() < 0.5;
+
+  if (useFirstRange) {
+    // Generate a number in the range 342-360
+    return Math.floor(Math.random() * (360 - 342 + 1)) + 342;
+  } else {
+    // Generate a number in the range 0-18
+    return Math.floor(Math.random() * (18 - 0 + 1)) + 0;
+  }
+}
+
 
   function calcSpinToValues() {
     const duration = 3000;

@@ -10,37 +10,42 @@ export const props = [
     itemLabelRotation: 180,
     itemLabelAlign: AlignText.left,
     itemLabelColors: ['#c4bca5', '#fff'],
+    // itemLabelColors: ['#fff'],
     itemLabelBaselineOffset: -0.07,
     itemLabelFont: 'Amatic SC',
     // itemLabelFont: 'Gloria Hallelujah',
 
     itemLabelFontSizeMax: 55,  // maximum font size in pixels (relative to 500px container)
-    itemBackgroundColors: ['#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5'],
+    itemBackgroundColors: ['#ede4cc', '#c4bca5','#ffffed', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5'],
+    // itemBackgroundColors: ['#f4d6ce', '#55a4c2','#f2d778'],
    rotationSpeedMax: 500,
     rotationResistance: -100,
     lineWidth: 0,
     lineColor: '#fff',
-    image: './img/3.png',
+    image: './img/3d2.png',
     imageScale: 0.5,
     overlayImage: './img/example-0-overlay.svg',
     items: [
       {
         label: '-50% off',
-      },
-      {
-        label: '-40% off',
-      },
-      {
-        label: '-35% off',
+        weight:0.2,
       },
       {
         label: '-30% off',
+        weight: 0.3,
       },
-      {
-        label: '-25% off',
-      },
+      // {
+      //   label: '-35% off',
+      // },
+      // {
+      //   label: '-30% off',
+      // },
+      // {
+      //   label: '-25% off',
+      // },
       {
         label: '-20% off',
+        weight:0.5,
       },
 
 
