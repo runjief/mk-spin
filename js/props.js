@@ -25,23 +25,28 @@ export const props = [
     overlayImage: './img/example-0-overlay.svg',
     items: [
       {
-        label: '-20% off',
-      },
-      {
-        label: '-25% off',
-      },
-      {
-        label: '-30% off',
-      },
-      {
-        label: '-35% off',
+        label: '-50% off',
       },
       {
         label: '-40% off',
       },
       {
-        label: '-50% off',
+        label: '-35% off',
       },
+      {
+        label: '-30% off',
+      },
+      {
+        label: '-25% off',
+      },
+      {
+        label: '-20% off',
+      },
+
+
+
+
+
     ],
 
   },

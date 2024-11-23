@@ -76,20 +76,44 @@ window.onload = async () => {
   const btnSpin = document.querySelector('button');
   let modifier = 0;
 
-  window.addEventListener('click', (e) => {
+  window.addEventListener('click', async (e) => {
 
     // Listen for click event on spin button:
-    if (e.target === btnSpin) {
-      // const {duration, winningItemRotaion} = calcSpinToValues();
-      const easing = easingFunctions[4];
-      const easingFunction = easing.function;
-      const duration = 2600;
-      const revolutions = 3;
-      wheel.spinToItem(0, duration, true, revolutions, 1, easingFunction);
-      // wheel.spinToItem(winningItemIndex, duration, true, 2, 1, easing)
-      // wheel.spinTo(winningItemRotaion, duration);
-    }
+    // if (e.target === btnSpin) {
+    //   // const {duration, winningItemRotaion} = calcSpinToValues();
+    //   const easing = easingFunctions[4];
+    //   const easingFunction = easing.function;
+    //   const duration = 2600;
+    //   const revolutions = 3;
+    //   wheel.spinToItem(0, duration, true, revolutions, 1, easingFunction);
+    //   // wheel.spinToItem(winningItemIndex, duration, true, 2, 1, easing)
+    //   // wheel.spinTo(winningItemRotaion, duration);
+    // }
 
+    if (e.target === btnSpin) {
+      try {
+        const response = await fetch('https://spin-wheel.fly.dev/spin/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: '123'
+          })
+        });
+        const data = await response.json();
+        console.log('Spin response:', data);
+        
+        const easing = easingFunctions[4];
+        const easingFunction = easing.function;
+        const duration = 2600;
+        const revolutions = 3;
+        const target = data.item;
+        wheel.spinToItem(target, duration, true, revolutions, 1, easingFunction);
+      } catch (error) {
+        console.error('Error fetching spin result:', error);
+      }
+    }
   });
 
   function calcSpinToValues() {
