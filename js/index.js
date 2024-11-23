@@ -35,7 +35,6 @@ window.onload = async () => {
   await loadFonts(props.map(i => i.itemLabelFont));
 
   const wheel = new Wheel(document.querySelector('.wheel-wrapper'));
-  wheel.isInteractive = false;
   const dropdown = document.querySelector('select');
 
   const images = [];
@@ -73,7 +72,7 @@ window.onload = async () => {
 
   // Save object globally for easy debugging.
   window.wheel = wheel;
-
+wheel.isInteractive = false;
   const btnSpin = document.querySelector('button');
   let modifier = 0;
 
