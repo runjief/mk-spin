@@ -35,6 +35,7 @@ window.onload = async () => {
   await loadFonts(props.map(i => i.itemLabelFont));
 
   const wheel = new Wheel(document.querySelector('.wheel-wrapper'));
+  wheel.isInteractive = false;
   const dropdown = document.querySelector('select');
 
   const images = [];
@@ -109,6 +110,7 @@ window.onload = async () => {
         const duration = 2600;
         const revolutions = 3;
         const target = data.item;
+        
         wheel.spinToItem(target, duration, true, revolutions, 1, easingFunction);
       } catch (error) {
         console.error('Error fetching spin result:', error);

@@ -31,7 +31,7 @@ export const Defaults = Object.freeze({
     borderWidth: 1,
     debug: false,
     image: null,
-    isInteractive: true,
+    isInteractive: false,
     itemBackgroundColors: ['#fff'],
     itemLabelAlign: AlignText.right,
     itemLabelBaselineOffset: 0,
