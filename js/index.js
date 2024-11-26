@@ -98,12 +98,12 @@ window.onload = async () => {
         const data = await response.json();
         console.log('Spin response:', data);
         // // 添加1秒延迟设置指针角度
-        setTimeout(() => {
+
           wheel.pointerAngle = getRandomNumberInCombinedRange();
           console.log(wheel.pointerAngle);
           const target = data.selected_item.id;
           wheel.spinToItem(target, duration, true, revolutions, 1);
-        }, 1000);
+        
       } catch (error) {
         console.error('Error fetching spin result:', error);
       }
