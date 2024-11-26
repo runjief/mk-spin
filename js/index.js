@@ -1,6 +1,6 @@
-import {Wheel} from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-esm.js';
-import {loadFonts, loadImages} from './utils.js';
-import {props} from './props.js';
+import { Wheel } from 'https://cdn.jsdelivr.net/npm/spin-wheel@5.0.2/dist/spin-wheel-esm.js';
+import { loadFonts, loadImages } from './utils.js';
+import { props } from './props.js';
 import * as easing from './easing.js';
 
 const easingFunctions = [
@@ -72,25 +72,12 @@ window.onload = async () => {
 
   // Save object globally for easy debugging.
   window.wheel = wheel;
-wheel.isInteractive = false;
-  const btnSpin = document.querySelector('button');
+  wheel.isInteractive = false;
+  const spinButton = document.querySelector('#spinButton');
   let modifier = 0;
 
   window.addEventListener('click', async (e) => {
-
-    // Listen for click event on spin button:
-    // if (e.target === btnSpin) {
-    //   // const {duration, winningItemRotaion} = calcSpinToValues();
-    //   const easing = easingFunctions[4];
-    //   const easingFunction = easing.function;
-    //   const duration = 2600;
-    //   const revolutions = 3;
-    //   wheel.spinToItem(0, duration, true, revolutions, 1, easingFunction);
-    //   // wheel.spinToItem(winningItemIndex, duration, true, 2, 1, easing)
-    //   // wheel.spinTo(winningItemRotaion, duration);
-    // }
-
-    if (e.target === btnSpin) {
+    if (e.target === spinButton) {
       try {
         const response = await fetch('https://spin-wheel.fly.dev/spin', {
           method: 'POST',
@@ -99,42 +86,49 @@ wheel.isInteractive = false;
           },
           body: ''
         });
-        const data = await response.json();
-        console.log('Spin response:', data);
-        
+
+
+
         const easing = easingFunctions[4];
         const easingFunction = easing.function;
         const duration = 1500;
         const revolutions = 3;
-        const target = data.selected_item.id;
-        wheel.pointerAngle = getRandomNumberInCombinedRange();
-        console.log(wheel.pointerAngle)
-        wheel.spinToItem(target, duration, true, revolutions, 1, easingFunction);
+        const revolution = 4;
+        wheel.spinToItem(2, duration, true, revolution, 1);
+        const data = await response.json();
+        console.log('Spin response:', data);
+        // // 添加1秒延迟设置指针角度
+        setTimeout(() => {
+          wheel.pointerAngle = getRandomNumberInCombinedRange();
+          console.log(wheel.pointerAngle);
+          const target = data.selected_item.id;
+          wheel.spinToItem(target, duration, true, revolutions, 1);
+        }, 1000);
       } catch (error) {
         console.error('Error fetching spin result:', error);
       }
     }
   });
 
-function getRandomNumberInCombinedRange() {
-  // Randomly decide which range to use: 50% chance for each range
-  const useFirstRange = Math.random() < 0.5;
+  function getRandomNumberInCombinedRange() {
+    // Randomly decide which range to use: 50% chance for each range
+    const useFirstRange = Math.random() < 0.5;
 
-  if (useFirstRange) {
-    // Generate a number in the range 342-360
-    return Math.floor(Math.random() * (360 - 342 + 1)) + 342;
-  } else {
-    // Generate a number in the range 0-18
-    return Math.floor(Math.random() * (18 - 0 + 1)) + 0;
+    if (useFirstRange) {
+      // Generate a number in the range 342-360
+      return Math.floor(Math.random() * (360 - 342 + 1)) + 342;
+    } else {
+      // Generate a number in the range 0-18
+      return Math.floor(Math.random() * (18 - 0 + 1)) + 0;
+    }
   }
-}
 
 
   function calcSpinToValues() {
     const duration = 3000;
     const winningItemRotaion = getRandomInt(360, 360 * 1.75) + modifier;
     modifier += 360 * 1.75;
-    return {duration, winningItemRotaion};
+    return { duration, winningItemRotaion };
   }
 
   function getRandomInt(min, max) {
