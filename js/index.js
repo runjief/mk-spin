@@ -76,9 +76,20 @@ window.onload = async () => {
   const spinButton = document.querySelector('#spinButton');
   let modifier = 0;
 
+  let isSpinning = false; // 添加状态标记
+  
   window.addEventListener('click', async (e) => {
     if (e.target === spinButton) {
+      // 如果正在旋转中，直接返回
+      if (isSpinning) return;
+      
       try {
+        isSpinning = true; // 设置旋转状态
+        spinButton.disabled = true; // 禁用按钮
+        
+        // 先开始初始旋转动画
+        wheel.spinToItem(2, 5000, true, 10,1);
+        
         const response = await fetch('https://spin-wheel.fly.dev/spin', {
           method: 'POST',
           headers: {
@@ -87,25 +98,23 @@ window.onload = async () => {
           body: ''
         });
 
-
-
-        const easing = easingFunctions[4];
-        const easingFunction = easing.function;
-        const duration = 1500;
-        const revolutions = 3;
-        const revolution = 4;
-        wheel.spinToItem(2, duration, true, revolution, 1);
         const data = await response.json();
         console.log('Spin response:', data);
-        // // 添加1秒延迟设置指针角度
-
+        
+        // 设置指针角度并执行最终旋转
           wheel.pointerAngle = getRandomNumberInCombinedRange();
           console.log(wheel.pointerAngle);
           const target = data.selected_item.id;
-          wheel.spinToItem(target, duration, true, revolutions, 1);
+          wheel.spinToItem(target, 1500, true, 3, 1);
         
       } catch (error) {
         console.error('Error fetching spin result:', error);
+      } finally {
+        // 动画结束后重置状态
+        setTimeout(() => {
+          isSpinning = false;
+          spinButton.disabled = false;
+        }, 1500);
       }
     }
   });
