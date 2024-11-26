@@ -88,7 +88,7 @@ window.onload = async () => {
         spinButton.disabled = true; // 禁用按钮
         
         // 先开始初始旋转动画
-        wheel.spinToItem(2, 5000, true, 10,1);
+        wheel.spinToItem(3, 5000, true, 10,1);
         
         const response = await fetch('https://spin-wheel.fly.dev/spin', {
           method: 'POST',
