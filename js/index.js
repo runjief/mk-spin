@@ -90,7 +90,7 @@ window.onload = async () => {
         // 先开始初始旋转动画
         wheel.spinToItem(2, 5000, true, 10,1);
         
-        const response = await fetch('http://127.0.0.1:8000/spin', {
+        const response = await fetch('https://spin-wheel.fly.dev/spin', {
           method: 'POST',
           headers: {
             'accept': 'application/json'
