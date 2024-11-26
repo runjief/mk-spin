@@ -90,7 +90,7 @@ window.onload = async () => {
         // 先开始初始旋转动画
         wheel.spinToItem(2, 5000, true, 10,1);
         
-        const response = await fetch('https://spin-wheel.fly.dev/spin', {
+        const response = await fetch('http://127.0.0.1:8000/spin', {
           method: 'POST',
           headers: {
             'accept': 'application/json'
@@ -105,7 +105,12 @@ window.onload = async () => {
           wheel.pointerAngle = getRandomNumberInCombinedRange();
           console.log(wheel.pointerAngle);
           const target = data.selected_item.id;
-          wheel.spinToItem(target, 1500, true, 3, 1);
+          if (target ==2 ){
+            wheel.spinToItem(3, 1500, true, 3, 1);
+          } else {
+            wheel.spinToItem(target, 1500, true, 3, 1);
+          }
+
         
       } catch (error) {
         console.error('Error fetching spin result:', error);

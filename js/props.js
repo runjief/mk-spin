@@ -17,7 +17,7 @@ export const props = [
 
     itemLabelFontSizeMax: 50,  // maximum font size in pixels (relative to 500px container)
     // itemBackgroundColors: ['#ede4cc', '#c4bca5','#ffffed', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5', '#ede4cc', '#c4bca5'],
-    itemBackgroundColors: ['#f4d6ce', '#55a4c2','#f2d778'],
+    itemBackgroundColors: ['#ce5b54','#f4d6ce', '#55a4c2','#f2d778',],
    rotationSpeedMax: 500,
     rotationResistance: -100,
     lineWidth: 0,
@@ -44,9 +44,14 @@ export const props = [
       //   label: '-25% off',
       // },
       {
-        label: '-20% off',
-        weight:0.5,
+        label: '-10% off',
+        weight:0.3,
       },
+      {
+        label: '-20% off',
+        weight:0.2,
+      },
+
 
 
 
